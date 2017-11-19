@@ -19,16 +19,15 @@ import TableHead from './TableHead';
  */
 
 const UserTable = ({users}) => {
-  const rows = users.map(user => <TableRow row={user} />);
+  const rows = users.map(user => <TableRow key={user.firstName} row={user} />);
   return (
     <Table bordered condensed>
-      <TableHead data={users} />
+      <TableHead />
       <tbody>
         {rows}
       </tbody>
     </Table>
-  )
-  return <div />;
+  );
 };
 
 export default UserTable;

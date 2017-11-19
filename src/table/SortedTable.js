@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import UserTable from './UserTable';
 
 const mapStateToProps = state => ({
-  users: []
+  users: state.userTable
 });
 
 const mapDispatchToProps = dispatch => ({});

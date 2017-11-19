@@ -6,10 +6,12 @@ import UserTable from './UserTable';
 import TableRow from './TableRow';
 import TableHead from './TableHead';
 import SortedTable from './SortedTable';
+import { addUser } from './table.actions';
 
 export {
   UserTable,
   TableRow,
   TableHead,
-  SortedTable
-}
+  SortedTable,
+  addUser
+};
