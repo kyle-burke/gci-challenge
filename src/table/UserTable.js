@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import TableRow from './TableRow';
 import TableHead from './TableHead';
+import { editUser, removeUser, toggleEdit } from './table.actions';
 
 /**
  * Stateless functional components provide us with a very concise way to
@@ -17,11 +19,17 @@ import TableHead from './TableHead';
  * haven't encountered enough anonymous stack traces to justify this style
  * change.
  */
-
-const UserTable = ({users}) => {
-  const rows = users.map(user => <TableRow key={user.firstName} row={user} />);
+const UserTable = ({users, onEdit, onRemove}) => {
+  const rows = users.map(user => (
+    <TableRow
+      key={user.id}
+      row={user}
+      onEdit={onEdit}
+      onRemove={onRemove}
+    />
+  ));
   return (
-    <Table bordered condensed>
+    <Table bordered striped>
       <TableHead />
       <tbody>
         {rows}
@@ -30,4 +38,16 @@ const UserTable = ({users}) => {
   );
 };
 
-export default UserTable;
+const mapStateToProps = state => ({
+  users: state.userTable
+});
+
+const mapDispatchToProps = dispatch => ({
+  onEdit: (id) => dispatch(toggleEdit(id)),
+  onRemove: (id) => dispatch(removeUser(id))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserTable);

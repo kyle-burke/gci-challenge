@@ -5,13 +5,13 @@
 import UserTable from './UserTable';
 import TableRow from './TableRow';
 import TableHead from './TableHead';
-import SortedTable from './SortedTable';
 import { addUser } from './table.actions';
+import Form from './Form';
 
 export {
   UserTable,
   TableRow,
   TableHead,
-  SortedTable,
-  addUser
+  addUser,
+  Form
 };

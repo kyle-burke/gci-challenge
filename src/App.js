@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { Form } from './form';
-import { SortedTable, addUser } from './table';
+import { Grid, Col } from 'react-bootstrap';
+import { UserTable, Form } from './table';
 import app from './reducers';
 
 let store = createStore(
@@ -15,17 +15,17 @@ let store = createStore(
 );
 
 class App extends React.Component {
-  onFormSubmit = (firstName, lastName, address) => {
-    store.dispatch(addUser(firstName, lastName, address));
-  }
-
   render() {
     return (
       <Provider store={store}>
-        <div>
-          <Form onSubmit={this.onFormSubmit} />
-          <SortedTable />
-        </div>
+        <Grid>
+          <Col xs={12} md={6}>
+            <Form />
+          </Col>
+          <Col xs={12} md={6}>
+            <UserTable />
+          </Col>
+        </Grid>
       </Provider>
     );
   }
