@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Table } from 'react-bootstrap';
 import TableRow from './TableRow';
 import TableHead from './TableHead';
-import { editUser, removeUser, toggleEdit } from './table.actions';
+import { removeUser, toggleEdit } from './actions';
 
 /**
  * Stateless functional components provide us with a very concise way to
@@ -19,7 +19,7 @@ import { editUser, removeUser, toggleEdit } from './table.actions';
  * haven't encountered enough anonymous stack traces to justify this style
  * change.
  */
-const UserTable = ({users, onEdit, onRemove}) => {
+export const UserTable = ({users, onEdit, onRemove}) => {
   const rows = users.map(user => (
     <TableRow
       key={user.id}

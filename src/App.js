@@ -2,8 +2,10 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { Grid, Col } from 'react-bootstrap';
-import { UserTable, Form } from './table';
+import UserTable from './UserTable';
+import Form from './Form';
 import app from './reducers';
+import './App.css';
 
 let store = createStore(
   // our combined reducers
@@ -19,10 +21,10 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <Grid>
-          <Col xs={12} md={6}>
+          <Col className="appColumn" xs={12} md={6}>
             <Form />
           </Col>
-          <Col xs={12} md={6}>
+          <Col className="appColumn" xs={12} md={6}>
             <UserTable />
           </Col>
         </Grid>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { findIndexByID } from '../table/table.reducer';
-import { addUser, editUser, toggleEdit } from '../table/table.actions';
+import { findIndexByID } from './reducers';
+import { addUser, editUser, toggleEdit } from './actions';
 import { connect } from 'react-redux';
 import {
   FormGroup,
@@ -9,8 +9,9 @@ import {
   ControlLabel,
   Button
 } from 'react-bootstrap';
+import './Form.css';
 
-class Form extends React.Component {
+export class Form extends React.Component {
   // Static class members make a nice way to set default state
   state = {
     firstName: '',
@@ -19,6 +20,7 @@ class Form extends React.Component {
   }
 
   componentWillReceiveProps({editingUser}) {
+    console.log(editingUser);
     if (editingUser) {
       this.setState({
         firstName: editingUser.firstName,
@@ -84,6 +86,7 @@ class Form extends React.Component {
     let cancelButton = (
       <Button
         bsStyle="default"
+        className="cancelButton"
         onClick={this.onCancel}
       >
         Cancel
@@ -105,6 +108,7 @@ class Form extends React.Component {
     let editButton = (
       <Button
         bsStyle="primary"
+        className="editButton"
         onClick={this.onEdit}
         disabled={
           !this.state.firstName ||
@@ -118,9 +122,7 @@ class Form extends React.Component {
 
     return (
       <form>
-        <FormGroup
-          controlId="firstNameGroup"
-        >
+        <FormGroup>
           <ControlLabel>First Name</ControlLabel>
           <FormControl
             type="text"
@@ -129,9 +131,7 @@ class Form extends React.Component {
             onChange={this.handleFirstNameChange}
           />
         </FormGroup>
-        <FormGroup
-          controlId="lastNameGroup"
-        >
+        <FormGroup>
           <ControlLabel>Last Name</ControlLabel>
           <FormControl
             type="text"
@@ -140,9 +140,7 @@ class Form extends React.Component {
             onChange={this.handleLastNameChange}
           />
         </FormGroup>
-        <FormGroup
-          controlId="addressGroup"
-        >
+        <FormGroup>
           <ControlLabel>Address</ControlLabel>
           <FormControl
             type="text"
